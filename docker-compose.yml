@@ -1,0 +1,11 @@
+postgresql:
+  image: postgres
+  environment:
+    POSTGRES_USER: testuser
+    POSTGRES_PASSWORD: testpass
+    POSTGRES_DB: testdb
+  ports:
+    - "5432:5432"
+  container_name: postgresql
+  volumes:
+    - ./data/:/docker-entrypoint-initdb.d/
