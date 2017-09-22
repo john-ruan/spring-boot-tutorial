@@ -1,4 +1,4 @@
-package com.example.tutorial.web;
+package com.example.tutorial.web.controller;
 
 import java.util.Collections;
 import java.util.Map;
