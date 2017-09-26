@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Top Page</title>
+</head>
+<body>
+	<h3>Your status</h3>
+	<table border="1">
+		<tr>
+			<td>status</td>
+			<td><span th:text="${latestUserStatus.status}"></span></td>
+		</tr>
+		<tr>
+			<td>start time</td>
+			<td><span th:text="${latestUserStatus.startTime}"></span></td>
+		</tr>
+		<tr>
+			<td>end time</td>
+			<td><span th:text="${latestUserStatus.endTime}"></span></td>
+		</tr>
+	</table>
+	<a href="/update">update status</a>
+</body>
+</html>

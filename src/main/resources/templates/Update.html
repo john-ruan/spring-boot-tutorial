@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Update Page</title>
+</head>
+<body>
+	<h3>Please input new status.</h3>
+	<form action="#" method="post" th:action="@{./update}"
+		th:object="${statusForm}">
+		<div th:if="${updateError}">
+			<span th:text="${updateError}"></span>
+		</div>
+		<table>
+			<tr>
+				<td>status</td>
+				<td><select id="status" name="status">
+						<option th:each="status : ${statusList}"
+							th:value="${status.label}" th:inline="text">[[${status.label}]]</option>
+				</select></td>
+				<td><span th:if="${#fields.hasErrors('status')}"
+					th:errors="*{status}">status error</span></td>
+			</tr>
+			<tr>
+				<td>start time</td>
+				<td><input type="text" size="5" th:field="*{startTime}" /></td>
+				<td><span th:if="${#fields.hasErrors('startTime')}"
+					th:errors="*{startTime}">start time error</span></td>
+			</tr>
+			<tr>
+				<td>end time</td>
+				<td><input type="text" size="5" th:field="*{endTime}" /></td>
+				<td><span th:if="${#fields.hasErrors('endTime')}"
+					th:errors="*{endTime}">end time error</span></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="update" /></td>
+				<td><input type="reset" value="reset" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

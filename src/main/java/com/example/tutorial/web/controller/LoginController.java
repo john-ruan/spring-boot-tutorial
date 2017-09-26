@@ -1,5 +1,6 @@
 package com.example.tutorial.web.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,8 @@ public class LoginController {
 	}
 
 	@PostMapping(value = "/login")
-	public String loginSubmit(@Valid LoginForm loginForm, BindingResult bindingResult, Model model) {
+	public String loginSubmit(@Valid LoginForm loginForm, BindingResult bindingResult, Model model,
+			HttpSession session) {
 		if (bindingResult.hasErrors()) {
 			return "Login";
 		}
@@ -36,7 +38,10 @@ public class LoginController {
 			return "Login";
 		}
 
-		return "Person";
+		session.setAttribute("userId", loginForm.getId());
+		session.setAttribute("userName", loginForm.getUserName());
+
+		return "redirect:/top";
 	}
 
 	@ModelAttribute
