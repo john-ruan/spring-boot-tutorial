@@ -3,13 +3,9 @@ package com.example.tutorial.entity;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.example.tutorial.enums.Status;
 
 @Entity
 public class UserStatus {
@@ -18,8 +14,7 @@ public class UserStatus {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long userId;
-	@Enumerated(EnumType.STRING)
-	private Status status;
+	private String status;
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private Timestamp created;
@@ -43,11 +38,11 @@ public class UserStatus {
 		this.userId = userId;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

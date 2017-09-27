@@ -13,11 +13,11 @@
 		</tr>
 		<tr>
 			<td>start time</td>
-			<td><span th:text="${latestUserStatus.startTime}"></span></td>
+			<td><span th:text="${#dates.format(latestUserStatus.startTime, 'HH:mm')}"></span></td>
 		</tr>
 		<tr>
 			<td>end time</td>
-			<td><span th:text="${latestUserStatus.endTime}"></span></td>
+			<td><span th:text="${#dates.format(latestUserStatus.endTime, 'HH:mm')}"></span></td>
 		</tr>
 	</table>
 	<a href="/update">update status</a>

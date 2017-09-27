@@ -44,26 +44,27 @@ public class UpdateController {
 
 		UserStatus userStatus = new UserStatus();
 		userStatus.setUserId(Long.valueOf((String) session.getAttribute("userId")));
-		userStatus.setStatus(Status.getStatus(statusForm.getStatus()));
+		userStatus.setStatus(statusForm.getStatus());
 		if (!StringUtils.isEmpty(statusForm.getStartTime())) {
-			Calendar calendar = Calendar.getInstance();
-			String time[] = statusForm.getStartTime().split(":");
-			calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(time[0]));
-			calendar.set(Calendar.MINUTE, Integer.valueOf(time[1]));
-			userStatus.setStartTime(new Timestamp(calendar.getTimeInMillis()));
+			userStatus.setStartTime(createTimestamp(statusForm.getStartTime()));
 		}
 		if (!StringUtils.isEmpty(statusForm.getEndTime())) {
-			Calendar calendar = Calendar.getInstance();
-			String time[] = statusForm.getStartTime().split(":");
-			calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(time[0]));
-			calendar.set(Calendar.MINUTE, Integer.valueOf(time[1]));
-			userStatus.setEndTime(new Timestamp(calendar.getTimeInMillis()));
+			userStatus.setEndTime(createTimestamp(statusForm.getEndTime()));
 		}
 		userStatus.setCreated(new Timestamp(System.currentTimeMillis()));
 
 		userStatusService.insertUserStatus(userStatus);
 
 		return "redirect:/top";
+	}
+
+	private Timestamp createTimestamp(String input) {
+		Calendar calendar = Calendar.getInstance();
+		String time[] = input.split(":");
+		calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(time[0]));
+		calendar.set(Calendar.MINUTE, Integer.valueOf(time[1]));
+
+		return new Timestamp(calendar.getTimeInMillis());
 	}
 
 	@ModelAttribute
